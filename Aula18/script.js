@@ -633,7 +633,7 @@ window.addEventListener("click", event => {
 function contactar(carro) {
 
     const numero =
-        "244900000000";
+        "+244 931 351 743";
 
     const mensagem =
         `Olá! Vi o ${carro} no site AutoVenda e tenho interesse. Gostaria de receber mais informações.`;
