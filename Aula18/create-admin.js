@@ -11,9 +11,9 @@ async function criarAdmin() {
 
     const nome = "Aser Ucuachalo";
 
-    const email = "ucuachaloaser@gmail.com";
+    const email = "aser@gmail.com";
 
-    const password = "odeth1986";
+    const password = "A12345678";
 
 
     const hash =
