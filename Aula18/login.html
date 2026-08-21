@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Login - AutoVenda</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="login-container">
+
+        <div class="login-box">
+
+            <h1>🚘 AutoVenda</h1>
+
+            <h2>Área Administrativa</h2>
+
+            <p>Entre para administrar os veículos.</p>
+
+            <form id="loginForm">
+
+                <label>Email</label>
+
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="Digite o seu email"
+                    required
+                >
+
+                <label>Palavra-passe</label>
+
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Digite a sua palavra-passe"
+                    required
+                >
+
+                <button type="submit">
+                    Entrar
+                </button>
+
+            </form>
+
+            <p id="mensagem"></p>
+
+            <a href="index.html">
+                PAGÍNA INICIAL
+            </a>
+
+        </div>
+
+    </div>
+
+
+<script>
+
+document
+    .getElementById("loginForm")
+    .addEventListener("submit", function(event) {
+
+        event.preventDefault();
+
+        const email =
+            document.getElementById("email").value;
+
+        const password =
+            document.getElementById("password").value;
+
+
+        /*
+         * LOGIN TEMPORÁRIO
+         *
+         * Vamos substituir isto por uma
+         * autenticação real posteriormente.
+         */
+
+        if (
+            email === "aserucuachalo@gmail.com" &&
+            password === "123456"
+        ) {
+
+            localStorage.setItem(
+                "autovendaAdmin",
+                "true"
+            );
+
+            window.location.href =
+                "admin.html";
+
+        } else {
+
+            document.getElementById(
+                "mensagem"
+            ).textContent =
+                "Email ou palavra-passe incorretos.";
+
+        }
+
+    });
+
+</script>
+
+</body>
+
+</html>

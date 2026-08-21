@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Login | AutoVenda</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+<body class="login-page">
+
+    <main class="login-box">
+
+        <div class="login-logo">
+            🚘 AutoVenda
+        </div>
+
+        <p class="login-label">
+            ÁREA ADMINISTRATIVA
+        </p>
+
+        <h1>
+            Entrar
+        </h1>
+
+        <p class="login-description">
+            Aceda ao painel de gestão da AutoVenda.
+        </p>
+
+
+        <form id="loginForm">
+
+            <label for="email">
+                E-mail
+            </label>
+
+            <input
+                type="email"
+                id="email"
+                placeholder="admin@autovenda.ao"
+                required
+                autocomplete="username"
+            >
+
+
+            <label for="password">
+                Palavra-passe
+            </label>
+
+            <input
+                type="password"
+                id="password"
+                placeholder="A sua palavra-passe"
+                required
+                autocomplete="current-password"
+            >
+
+
+            <button
+                type="submit"
+                class="btn login-button"
+            >
+                Entrar
+            </button>
+
+        </form>
+
+
+        <p
+            id="loginError"
+            class="login-error"
+        ></p>
+
+
+        <a
+            href="/"
+            class="back-home"
+        >
+            ← Voltar ao site
+        </a>
+
+    </main>
+
+
+<script>
+
+const form =
+    document.getElementById("loginForm");
+
+const errorElement =
+    document.getElementById("loginError");
+
+
+form.addEventListener(
+    "submit",
+    async event => {
+
+        event.preventDefault();
+
+        errorElement.textContent = "";
+
+
+        const email =
+            document.getElementById("email").value;
+
+        const password =
+            document.getElementById("password").value;
+
+
+        try {
+
+            const response =
+                await fetch(
+                    "/api/login",
+                    {
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type":
+                                "application/json"
+                        },
+
+                        body: JSON.stringify({
+                            email,
+                            password
+                        })
+                    }
+                );
+
+
+            const data =
+                await response.json();
+
+
+            if (!response.ok) {
+
+                errorElement.textContent =
+                    data.error ||
+                    "Não foi possível entrar.";
+
+                return;
+
+            }
+
+
+            window.location.href =
+                "/admin.html";
+
+
+        } catch (error) {
+
+            errorElement.textContent =
+                "Erro de ligação ao servidor.";
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+</html>

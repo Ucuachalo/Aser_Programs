@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AutoVenda Angola | Compra e Venda de Carros</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+    <div class="logo">
+        🚘 AutoVenda
+    </div>
+
+    <nav>
+        <a href="#inicio">Início</a>
+        <a href="#carros">Carros</a>
+        <a href="#categorias">Categorias</a>
+        <a href="#contacto">Contacto</a>
+        <a href="login.html">
+    🔐 Login
+</a>
+        <button class="admin-button" onclick="abrirAdmin()">
+            ⚙️ Admin
+        </button>
+    </nav>
+</header>
+
+
+<section class="hero" id="inicio">
+
+    <div class="hero-content">
+
+        <p class="hero-label">
+            A SUA PRÓXIMA VIATURA ESTÁ AQUI
+        </p>
+
+        <h1>
+            Encontre o carro<br>
+            dos seus sonhos
+        </h1>
+
+        <p>
+            Carros novos e usados com preços competitivos.
+        </p>
+
+        <a href="#carros" class="btn">
+            Ver veículos
+        </a>
+
+    </div>
+
+</section>
+
+
+<section class="search-section">
+
+    <h2>🔎 Encontre o seu carro</h2>
+
+    <div class="filters">
+
+        <input
+            type="text"
+            id="search"
+            placeholder="Marca ou modelo..."
+        >
+
+        <select id="category">
+            <option value="">Todas as categorias</option>
+            <option value="SUV">SUV</option>
+            <option value="Sedan">Sedan</option>
+            <option value="Pickup">Pick-up</option>
+            <option value="Desportivo">Desportivo</option>
+            <option value="Economico">Económico</option>
+            <option value="Luxo">Luxo</option>
+        </select>
+
+        <select id="brand">
+            <option value="">Todas as marcas</option>
+            <option value="Toyota">Toyota</option>
+            <option value="Mercedes">Mercedes</option>
+            <option value="BMW">BMW</option>
+            <option value="Hyundai">Hyundai</option>
+            <option value="Ford">Ford</option>
+        </select>
+
+        <select id="maxPrice">
+            <option value="">Qualquer preço</option>
+            <option value="10000000">Até 10 milhões Kz</option>
+            <option value="20000000">Até 20 milhões Kz</option>
+            <option value="30000000">Até 30 milhões Kz</option>
+            <option value="50000000">Até 50 milhões Kz</option>
+        </select>
+
+    </div>
+
+</section>
+
+
+<section class="categories" id="categorias">
+
+    <h2>Comprar por categoria</h2>
+
+    <div class="category-grid">
+
+        <button onclick="selecionarCategoria('SUV')">
+            🚙
+            <strong>SUV</strong>
+            <span>Veículos familiares</span>
+        </button>
+
+        <button onclick="selecionarCategoria('Sedan')">
+            🚗
+            <strong>Sedans</strong>
+            <span>Conforto e elegância</span>
+        </button>
+
+        <button onclick="selecionarCategoria('Pickup')">
+            🛻
+            <strong>Pick-ups</strong>
+            <span>Força e trabalho</span>
+        </button>
+
+        <button onclick="selecionarCategoria('Desportivo')">
+            🏎️
+            <strong>Desportivos</strong>
+            <span>Potência e velocidade</span>
+        </button>
+
+        <button onclick="selecionarCategoria('Economico')">
+            🚘
+            <strong>Económicos</strong>
+            <span>Preços acessíveis</span>
+        </button>
+
+        <button onclick="selecionarCategoria('Luxo')">
+            👑
+            <strong>Luxo</strong>
+            <span>Máximo conforto</span>
+        </button>
+
+    </div>
+
+</section>
+
+
+<section class="cars-section" id="carros">
+
+    <div class="section-header">
+
+        <div>
+            <p class="small-title">O NOSSO STOCK</p>
+            <h2>Carros disponíveis</h2>
+        </div>
+
+        <span id="totalCars">
+            0 veículos
+        </span>
+
+    </div>
+
+
+    <div class="cars-container" id="carsContainer"></div>
+
+
+    <div id="noResults" class="no-results">
+        <div>🚗</div>
+        <h3>Nenhum veículo encontrado</h3>
+        <p>Tente alterar os filtros da pesquisa.</p>
+    </div>
+
+</section>
+
+
+<section class="why-us">
+
+    <h2>Porquê comprar na AutoVenda?</h2>
+
+    <div class="benefits">
+
+        <div>
+            <span>✅</span>
+            <h3>Veículos selecionados</h3>
+            <p>
+                Trabalhamos com veículos de diferentes categorias.
+            </p>
+        </div>
+
+        <div>
+            <span>💰</span>
+            <h3>Preços competitivos</h3>
+            <p>
+                Encontre opções para diferentes orçamentos.
+            </p>
+        </div>
+
+        <div>
+            <span>📱</span>
+            <h3>Contacto rápido</h3>
+            <p>
+                Fale diretamente com o vendedor pelo WhatsApp.
+            </p>
+        </div>
+
+        <div>
+            <span>🔒</span>
+            <h3>Compra segura</h3>
+            <p>
+                Consulte todos os detalhes antes de tomar a decisão.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="contact-section" id="contacto">
+
+    <div>
+
+        <p class="small-title">FALE CONNOSCO</p>
+
+        <h2>Está à procura de um carro?</h2>
+
+        <p>
+            Não encontrou o veículo que procura?
+            Entre em contacto connosco.
+        </p>
+
+        <a
+            href="https://wa.me/244 931 351 734"
+            target="_blank"
+            class="btn whatsapp"
+        >
+            💬 Falar pelo WhatsApp
+        </a>
+
+    </div>
+
+</section>
+
+
+<footer>
+
+    <div class="footer-content">
+
+        <div>
+            <div class="logo">🚘 AutoVenda</div>
+            <p>
+                Compra e venda de veículos em Angola.
+            </p>
+        </div>
+
+        <div>
+            <h3>Contacto</h3>
+            <p>📞 +244 931 351 743</p>
+            <p>📧 vendas@autovenda.ao</p>
+        </div>
+
+    </div>
+
+    <div class="copyright">
+        FEITO POR: ENG UCUACHALO.
+    </div>
+
+</footer>
+
+
+<!-- MODAL DE DETALHES -->
+
+<div id="detailsModal" class="modal">
+
+    <div class="modal-content">
+
+        <button class="close" onclick="fecharModal('detailsModal')">
+            ×
+        </button>
+
+        <img id="detailImage" src="" alt="">
+
+        <div class="detail-body">
+
+            <span id="detailCategory" class="badge"></span>
+
+            <h2 id="detailName"></h2>
+
+            <div class="detail-price" id="detailPrice"></div>
+
+            <div class="specifications">
+
+                <div>
+                    <span>📅</span>
+                    <strong>Ano</strong>
+                    <p id="detailYear"></p>
+                </div>
+
+                <div>
+                    <span>⚙️</span>
+                    <strong>Câmbio</strong>
+                    <p id="detailTransmission"></p>
+                </div>
+
+                <div>
+                    <span>⛽</span>
+                    <strong>Combustível</strong>
+                    <p id="detailFuel"></p>
+                </div>
+
+                <div>
+                    <span>🛣️</span>
+                    <strong>Quilometragem</strong>
+                    <p id="detailKm"></p>
+                </div>
+
+            </div>
+
+            <p id="detailDescription" class="description"></p>
+
+            <div class="detail-actions">
+
+                <button
+                    id="favoriteDetail"
+                    class="favorite-button"
+                >
+                    ♡ Favorito
+                </button>
+
+                <button
+                    id="whatsappDetail"
+                    class="btn whatsapp"
+                >
+                    💬 Tenho interesse
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- PAINEL ADMINISTRATIVO -->
+
+<div id="adminModal" class="modal">
+
+    <div class="modal-content admin-modal">
+
+        <button class="close" onclick="fecharModal('adminModal')">
+            ×
+        </button>
+
+        <h2>⚙️ Painel Administrativo</h2>
+
+        <p class="admin-info">
+            Adicione veículos ao catálogo.
+        </p>
+
+        <form id="carForm">
+
+            <div class="form-grid">
+
+                <div>
+                    <label>Marca</label>
+
+                    <input
+                        type="text"
+                        id="newBrand"
+                        placeholder="Ex.: Toyota"
+                        required
+                    >
+                </div>
+
+                <div>
+                    <label>Modelo</label>
+
+                    <input
+                        type="text"
+                        id="newModel"
+                        placeholder="Ex.: Corolla"
+                        required
+                    >
+                </div>
+
+                <div>
+                    <label>Categoria</label>
+
+                    <select id="newCategory" required>
+                        <option value="">Selecionar</option>
+                        <option value="SUV">SUV</option>
+                        <option value="Sedan">Sedan</option>
+                        <option value="Pickup">Pick-up</option>
+                        <option value="Desportivo">Desportivo</option>
+                        <option value="Economico">Económico</option>
+                        <option value="Luxo">Luxo</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label>Ano</label>
+
+                    <input
+                        type="number"
+                        id="newYear"
+                        min="1990"
+                        max="2030"
+                        required
+                    >
+                </div>
+
+                <div>
+                    <label>Preço em Kz</label>
+
+                    <input
+                        type="number"
+                        id="newPrice"
+                        placeholder="15000000"
+                        required
+                    >
+                </div>
+
+                <div>
+                    <label>Quilometragem</label>
+
+                    <input
+                        type="text"
+                        id="newKm"
+                        placeholder="50.000 km"
+                        required
+                    >
+                </div>
+
+                <div>
+                    <label>Câmbio</label>
+
+                    <select id="newTransmission">
+                        <option>Automático</option>
+                        <option>Manual</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label>Combustível</label>
+
+                    <select id="newFuel">
+                        <option>Gasolina</option>
+                        <option>Diesel</option>
+                        <option>Híbrido</option>
+                        <option>Elétrico</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <label>URL da imagem</label>
+
+            <input
+                type="url"
+                id="newImage"
+                placeholder="https://..."
+                required
+            >
+
+            <label>Descrição</label>
+
+            <textarea
+                id="newDescription"
+                placeholder="Descrição do veículo..."
+                required
+            ></textarea>
+
+            <button class="btn" type="submit">
+                ➕ Publicar veículo
+            </button>
+
+        </form>
+
+
+        <hr>
+
+        <h3>Veículos publicados</h3>
+
+        <div id="adminCars"></div>
+
+    </div>
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AutoVenda - Venda de Carros</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f4f4;
+            color: #222;
+        }
+
+        /* CABEÇALHO */
+        header {
+            background: #111827;
+            color: white;
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #ffb703;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 25px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #ffb703;
+        }
+
+        /* BANNER */
+        .hero {
+            min-height: 430px;
+            background: linear-gradient(
+                rgba(0,0,0,0.65),
+                rgba(0,0,0,0.65)
+            ),
+            url("https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1600&q=80");
+
+            background-size: cover;
+            background-position: center;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 30px;
+        }
+
+        .hero h1 {
+            font-size: 50px;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 25px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #ffb703;
+            color: #111;
+            padding: 14px 25px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #f59e0b;
+        }
+
+        /* PESQUISA */
+        .search-area {
+            background: white;
+            padding: 25px 8%;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .search-area h2 {
+            margin-bottom: 15px;
+        }
+
+        .filters {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .filters input,
+        .filters select {
+            padding: 13px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 15px;
+        }
+
+        /* CARROS */
+        .cars-section {
+            padding: 50px 8%;
+        }
+
+        .cars-section h2 {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 35px;
+        }
+
+        .cars-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .car-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: 0.3s;
+        }
+
+        .car-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .car-card img {
+            width: 100%;
+            height: 210px;
+            object-fit: cover;
+        }
+
+        .car-info {
+            padding: 20px;
+        }
+
+        .car-info h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        .details {
+            color: #666;
+            margin-bottom: 12px;
+        }
+
+        .price {
+            color: #e63946;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .contact-btn {
+            width: 100%;
+            padding: 12px;
+            background: #111827;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .contact-btn:hover {
+            background: #ffb703;
+            color: #111;
+        }
+
+        /* SOBRE */
+        .about {
+            background: #111827;
+            color: white;
+            padding: 60px 8%;
+            text-align: center;
+        }
+
+        .about h2 {
+            color: #ffb703;
+            margin-bottom: 20px;
+            font-size: 32px;
+        }
+
+        .about p {
+            max-width: 800px;
+            margin: auto;
+            line-height: 1.8;
+            font-size: 17px;
+        }
+
+        /* CONTACTO */
+        .contact {
+            padding: 50px 8%;
+            text-align: center;
+            background: white;
+        }
+
+        .contact h2 {
+            margin-bottom: 20px;
+            font-size: 32px;
+        }
+
+        .contact p {
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        /* RODAPÉ */
+        footer {
+            background: #080b11;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        /* RESPONSIVO */
+        @media (max-width: 900px) {
+            .cars-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .filters {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            header {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav a {
+                margin: 0 8px;
+                font-size: 14px;
+            }
+
+            .hero h1 {
+                font-size: 35px;
+            }
+
+            .cars-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        .category {
+    display: inline-block;
+    background: #ffb703;
+    color: #111;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+    </style>
+</head>
+
+<body>
+
+    <!-- CABEÇALHO -->
+    <header>
+        <div class="logo">🚘 AutoVenda</div>
+
+        <nav>
+            <a href="#inicio">Início</a>
+            <a href="#carros">Carros</a>
+            <a href="#sobre">Sobre</a>
+            <a href="#contacto">Contacto</a>
+        </nav>
+    </header>
+
+    <!-- BANNER -->
+    <section class="hero" id="inicio">
+        <div>
+            <h1>Encontre o carro dos seus sonhos</h1>
+
+            <p>
+                Carros de qualidade, preços competitivos e segurança na compra.
+            </p>
+
+            <a href="#carros" class="btn">
+                Ver carros
+            </a>
+        </div>
+    </section>
+
+    <!-- PESQUISA -->
+    <section class="search-area">
+        <h2>Pesquisar veículos</h2>
+
+        <div class="filters">
+
+            <input
+                type="text"
+                id="search"
+                placeholder="Pesquisar por marca ou modelo..."
+            >
+
+            <select id="category">
+    <option value="">Todas as categorias</option>
+    <option value="SUV">SUVs</option>
+    <option value="Sedan">Sedans</option>
+    <option value="Pickup">Pick-ups</option>
+    <option value="Desportivo">Desportivos</option>
+    <option value="Economico">Económicos</option>
+    <option value="Luxo">Luxo</option>
+</select>
+
+            <select id="maxPrice">
+                <option value="">Qualquer preço</option>
+                <option value="10000000">Até 10.000.000 Kz</option>
+                <option value="20000000">Até 20.000.000 Kz</option>
+                <option value="30000000">Até 30.000.000 Kz</option>
+            </select>
+
+        </div>
+    </section>
+
+    <!-- CARROS -->
+    <section class="cars-section" id="carros">
+
+        <h2>Carros disponíveis</h2>
+
+        <div class="cars-container" id="carsContainer">
+
+    <!-- ================= SUV ================= -->
+
+    <div class="car-card"
+         data-category="SUV"
+         data-brand="Toyota"
+         data-name="Toyota Land Cruiser"
+         data-price="28000000">
+
+        <img src="https://images.unsplash.com/photo-1559416523-140ddc3d238c?auto=format&fit=crop&w=800&q=80">
+
+        <div class="car-info">
+            <span class="category">SUV</span>
+            <h3>Toyota Land Cruiser</h3>
+            <p class="details">2023 • Automático • Diesel • 7 lugares</p>
+            <p class="price">28.000.000 Kz</p>
+            <button class="contact-btn" onclick="contactar('Toyota Land Cruiser')">
+                Tenho interesse
+            </button>
+        </div>
+    </div>
+
+
+    <div class="car-card"
+         data-category="SUV"
+         data-brand="Hyundai"
+         data-name="Hyundai Tucson"
+         data-price="14500000">
+
+        <img src="https://images.unsplash.com/photo-1623869675781-80aa31012a5a?auto=format&fit=crop&w=800&q=80">
+
+        <div class="car-info">
+            <span class="category">SUV</span>
+            <h3>Hyundai Tucson</h3>
+            <p class="details">2023 • Automático • Gasolina • 5 lugares</p>
+            <p class="price">14.500.000 Kz</p>
+            <button class="contact-btn" onclick="contactar('Hyundai Tucson')">
+                Tenho interesse
+            </button>
+        </div>
+    </div>
+
+
+    <div class="car-card"
+         data-category="SUV"
+         data-brand="Toyota"
+         data-name="Toyota RAV4"
+         data-price="18500000">
+
+        <img src="https://images.unsplash.com/photo-1568844293986-8c3c0f4b9b5e?auto=format&fit=crop&w=800&q=80">
+
+        <div class="car-info">
+            <span class="category">SUV</span>
+            <h3>Toyota RAV4</h3>
+            <p class="details">2022 • Automático • Gasolina • 5 lugares</p>
+            <p class="price">18.500.000 Kz</p>
+            <button class="contact-btn" onclick="contactar('Toyota RAV4')">
+                Tenho interesse
+            </button>
+        </div>
+    </div>
+
+
+    <div class="car-card"
+         data-category="SUV"
+         data-brand="BMW"
+         data-name="BMW X5"
+         data-price="35000000">
+
+        <img src="https://images.unsplash.com/photo-1556189250-72ba954cfc2b?auto=format&fit=crop&w=800&q=80">
+
+        <div class="car-info">
+            <span class="category">SUV</span>
+            <h3>BMW X5</h3>
+            <p class="details">2023 • Automático • Gasolina • 5 lugares</p>
+            <p class="price">35.000.000 Kz</p>
+            <button class="contact-btn" onclick="contactar('BMW X5')">
+                Tenho interesse
+            </button>
+        </div>
+    </div>
+
+
+    <!-- ================= SEDANS ================= -->
+
+    <div class="car-card"
+         data-category="Sedan"
+         data-brand="Mercedes"
+         data-name="Mercedes-Benz C200"
+         data-price="22000000">
+
+        <img src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=800&q=80">
+
+        <div class="car-info">
+            <span class="category">Sedan</span>
+            <h3>Mercedes-Benz C200</h3>
+            <p class="details">2022 • Automático • Gasolina</p>
+            <p class="price">22.000.000 Kz</p>
+            <button class="contact-btn" onclick="contactar('Mercedes-Benz C200')">
+                Tenho interesse
+            </button>
+        </div>
+    </div>
+
+
+    <div class="car-card"
+         data-category="Sedan"
+         data-brand="Toyota"
+         data-name="Toyota Corolla"
+         data-price="12000000">
+
+        <img src="https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?auto=format&fit=crop&w=800&q=80">
+
+        <div class="car-info">
+            <span class="category">Sedan</span>
+            <h3>Toyota Corolla</h3>
+            <p class="details">2023 • Automático • Gasolina</p>
+            <p class="price">12.000.000 Kz</p>
+            <button class="contact-btn" onclick="contactar('Toyota Corolla')">
+                Tenho interesse
+            </button>
+        </div>
+    </div>
+
+
+    <div class="car-card"
+         data-category="Sedan"
+         data-brand="BMW"
+         data-name="BMW Série 3"
+         data-price="19000000">
+
+        <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=800&q=80">
+
+        <div class="car-info">
+            <span class="category">Sedan</span>
+            <h3>BMW Série 3</h3>
+            <p class="details">2021 • Automático • Gasolina</p>
+            <p class="price">19.000.000 Kz</p>
+            <button class="contact-btn" onclick="contactar('BMW Série 3')">
+                Tenho interesse
+            </button>
+        </div>
+    </div>
+
+
+    <!-- ================= PICK-UPS ================= -->
+
+    <div class="car-card"
+         data-category="Pickup"
+         data-brand="Toyota"
+         data-name="Toyota Hilux"
+         data-price="16000000">
+
+        <img src="https://images.unsplash.com/photo-1590362891991-f776e747a588?auto=format&fit=crop&w=800&q=80">
+
+        <div class="car-info">
+            <span class="category">Pick-up</span>
+            <h3>Toyota Hilux</h3>
+            <p class="details">2022 • Manual • Diesel • 4x4</p>
+            <p class="price">16.000.000 Kz</p>
+            <button class="contact-btn" onclick="contactar('Toyota Hilux')">
+                Tenho interesse
+            </button>
+        </div>
+    </div>
+
+
+    <div class="car-card"
+         data-category="Pickup"
+         data-brand="Ford"
+         data-name="Ford Ranger"
+         data-price="17500000">
+
+        <img src="https://images.unsplash.com/photo-1592838064575-70ed626d3a0e?auto=format&fit=crop&w=800&q=80">
+
+        <div class="car-info">
+            <span class="category">Pick-up</span>
+            <h3>Ford Ranger</h3>
+            <p class="details">2022 • Manual • Diesel • 4x4</p>
+            <p class="price">17.500.000 Kz</p>
+            <button class="contact-btn" onclick="contactar('Ford Ranger')">
+                Tenho interesse
+            </button>
+        </div>
+    </div>
+
+
+    <div class="car-card"
+         data-category="Pickup"
+         data-brand="Toyota"
+         data-name="Toyota Tacoma"
+         data-price="23000000">
+
+        <img src="https://images.unsplash.com/photo-1551830820-330a71b99659?auto=format&fit=crop&w=800&q=80">
+
+        <div class="car-info">
+            <span class="category">Pick-up</span>
+            <h3>Toyota Tacoma</h3>
+            <p class="details">2023 • Automático • Diesel • 4x4</p>
+            <p class="price">23.000.000 Kz</p>
+            <button class="contact-btn" onclick="contactar('Toyota Tacoma')">
+                Tenho interesse
+            </button>
+        </div>
+    </div>
+
+
+    <!-- ================= DESPORTIVOS ================= -->
+
+    <div class="car-card"
+         data-category="Desportivo"
+         data-brand="Ford"
+         data-name="Ford Mustang"
+         data-price="26000000">
+
+        <img src="https://images.unsplash.com/photo-1584345604476-8ec5e12e42dd?auto=format&fit=crop&w=800&q=80">
+
+        <div class="car-info">
+            <span class="category">Desportivo</span>
+            <h3>Ford Mustang</h3>
+            <p class="details">2023 • Automático • V8 • Gasolina</p>
+            <p class="price">26.000.000 Kz</p>
+            <button class="contact-btn" onclick="contactar('Ford Mustang')">
+                Tenho interesse
+            </button>
+        </div>
+    </div>
+
+
+    <div class="car-card"
+         data-category="Desportivo"
+         data-brand="BMW"
+         data-name="BMW M4"
+         data-price="42000000">
+
+        <img src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=800&q=80">
+
+        <div class="car-info">
+            <span class="category">Desportivo</span>
+            <h3>BMW M4</h3>
+            <p class="details">2024 • Automático • Turbo • Gasolina</p>
+            <p class="price">42.000.000 Kz</p>
+            <button class="contact-btn" onclick="contactar('BMW M4')">
+                Tenho interesse
+            </button>
+        </div>
+    </div>
+
+
+    <!-- ================= ECONÓMICOS ================= -->
+
+    <div class="car-card"
+         data-category="Economico"
+         data-brand="Toyota"
+         data-name="Toyota Yaris"
+         data-price="8500000">
+
+        <img src="https://images.unsplash.com/photo-1619767886558-efdc259cde1a?auto=format&fit=crop&w=800&q=80">
+
+        <div class="car-info">
+            <span class="category">Económico</span>
+            <h3>Toyota Yaris</h3>
+            <p class="details">2022 • Automático • Gasolina</p>
+            <p class="price">8.500.000 Kz</p>
+            <button class="contact-btn" onclick="contactar('Toyota Yaris')">
+                Tenho interesse
+            </button>
+        </div>
+    </div>
+
+
+    <div class="car-card"
+         data-category="Economico"
+         data-brand="Hyundai"
+         data-name="Hyundai i10"
+         data-price="7000000">
+
+        <img src="https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=800&q=80">
+
+        <div class="car-info">
+            <span class="category">Económico</span>
+            <h3>Hyundai i10</h3>
+            <p class="details">2021 • Manual • Gasolina</p>
+            <p class="price">7.000.000 Kz</p>
+            <button class="contact-btn" onclick="contactar('Hyundai i10')">
+                Tenho interesse
+            </button>
+        </div>
+    </div>
+
+
+    <!-- ================= LUXO ================= -->
+
+    <div class="car-card"
+         data-category="Luxo"
+         data-brand="Mercedes"
+         data-name="Mercedes-Benz Classe S"
+         data-price="55000000">
+
+        <img src="https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=800&q=80">
+
+        <div class="car-info">
+            <span class="category">Luxo</span>
+            <h3>Mercedes-Benz Classe S</h3>
+            <p class="details">2024 • Automático • V8 • Gasolina</p>
+            <p class="price">55.000.000 Kz</p>
+            <button class="contact-btn" onclick="contactar('Mercedes-Benz Classe S')">
+                Tenho interesse
+            </button>
+        </div>
+    </div>
+
+
+    <div class="car-card"
+         data-category="Luxo"
+         data-brand="BMW"
+         data-name="BMW Série 7"
+         data-price="48000000">
+
+        <img src="https://images.unsplash.com/photo-1523983388277-336a66bf9bcd?auto=format&fit=crop&w=800&q=80">
+
+        <div class="car-info">
+            <span class="category">Luxo</span>
+            <h3>BMW Série 7</h3>
+            <p class="details">2024 • Automático • Híbrido</p>
+            <p class="price">48.000.000 Kz</p>
+            <button class="contact-btn" onclick="contactar('BMW Série 7')">
+                Tenho interesse
+            </button>
+        </div>
+    </div>
+
+</div>
+    </section>
+
+    <!-- SOBRE -->
+    <section class="about" id="sobre">
+
+        <h2>Sobre a AutoVenda</h2>
+
+        <p>
+            Somos uma plataforma dedicada à compra e venda de veículos.
+            Trabalhamos para oferecer carros de qualidade, preços justos
+            e uma experiência simples e segura para os nossos clientes.
+        </p>
+
+    </section>
+
+    <!-- CONTACTO -->
+    <section class="contact" id="contacto">
+
+        <h2>Entre em contacto</h2>
+
+        <p>
+            Gostou de algum veículo? Fale connosco para saber mais.
+        </p>
+
+        <a
+            class="btn"
+            href="https://wa.me/244900000000"
+            target="_blank"
+        >
+            💬 Contactar pelo WhatsApp
+        </a>
+
+    </section>
+
+    <!-- RODAPÉ -->
+    <footer>
+
+        <p>
+            © 2026 AutoVenda - Todos os direitos reservados.
+        </p>
+
+    </footer>
+
+    <script>
+
+        const search = document.getElementById("search");
+const brand = document.getElementById("brand");
+const maxPrice = document.getElementById("maxPrice");
+const category = document.getElementById("category");
+
+const cars = document.querySelectorAll(".car-card");
+
+function filtrarCarros() {
+
+    const texto = search.value.toLowerCase();
+    const marca = brand.value;
+    const categoria = category.value;
+    const precoMaximo = maxPrice.value;
+
+    cars.forEach(car => {
+
+        const nome = car.dataset.name.toLowerCase();
+        const marcaCarro = car.dataset.brand;
+        const categoriaCarro = car.dataset.category;
+        const preco = Number(car.dataset.price);
+
+        const correspondeTexto =
+            nome.includes(texto);
+
+        const correspondeMarca =
+            marca === "" || marcaCarro === marca;
+
+        const correspondeCategoria =
+            categoria === "" || categoriaCarro === categoria;
+
+        const correspondePreco =
+            precoMaximo === "" ||
+            preco <= Number(precoMaximo);
+
+        if (
+            correspondeTexto &&
+            correspondeMarca &&
+            correspondeCategoria &&
+            correspondePreco
+        ) {
+            car.style.display = "block";
+        } else {
+            car.style.display = "none";
+        }
+
+    });
+}
+
+search.addEventListener("input", filtrarCarros);
+brand.addEventListener("change", filtrarCarros);
+maxPrice.addEventListener("change", filtrarCarros);
+category.addEventListener("change", filtrarCarros);
+
+
+function contactar(carro) {
+
+    const numero = "244900000000";
+
+    const mensagem =
+        `Olá! Tenho interesse no ${carro}. Gostaria de receber mais informações.`;
+
+    const url =
+        `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
+
+    window.open(url, "_blank");
+}
+    </script>
+
+</body>
+</html>

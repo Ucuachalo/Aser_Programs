@@ -1,0 +1,80 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+header{
+     background-color: rgb(204, 228, 235);
+            height: 50px;
+}
+main{
+   background-color: rgb(2, 34, 34);
+            height: 800px; 
+            display: inline-block;
+            width: 49%;
+}
+
+aside{
+            height: 800px;
+            display: inline-block;
+            width: 50%;
+            margin-top: 0px;
+}
+
+    footer{
+        background-color: aqua;
+            height: 50%;
+            width: 100%;
+    }
+    article{
+        background-color: rgb(166, 156, 235);
+            height: 49%;
+            width: 100%;
+    }
+    img{
+       height: 100%; 
+            margin-right: 0px; 
+            width: 100%; 
+    }
+    h1{
+        color: brown;
+            font-size: 50px;
+            padding: 100px;
+    }
+h4{
+         color: black;
+            text-align: end;
+            padding: 15px;
+    }
+    h6{
+         color: black;
+            font-size: 15px;
+            padding: 100px;
+    }
+    a{
+        color: black;
+            font-size: 30px;
+            border-radius: 1px solid black;
+            padding: 10px;
+            margin-left: 100px;
+    }
+    h2{
+               display: inline-block;
+          width: 80%;
+text-align: left;
+font-size: 20px;
+padding: 5px;
+    }
+    nav{
+           background-color:aliceblue;
+           display: inline-block;
+           border-radius: 10px;
+           text-align: center;
+           margin: auto;
+    }
+    h3{
+        display: inline-block;
+text-align: right;
+font-size: 10px;
+margin-top: 20px;
+margin-left: 30px;
+    }
